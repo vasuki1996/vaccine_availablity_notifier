@@ -1,0 +1,17 @@
+service: cowin-notifier-function
+custom:
+  secrets: ${file(secrets.json)}
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: prod
+  region: ap-south-1
+  timeout: 30
+  environment:
+    NODE_ENV: ${self:custom.secrets.NODE_ENV}
+    SLACK_HOOK_URL: ${self:custom.secrets.SLACK_HOOK_URL} 
+    DISTRICT_ID: ${self:custom.secrets.DISTRICT_ID}
+functions:
+  app:
+    timeout: 30
+    handler: index.handler

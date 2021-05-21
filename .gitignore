@@ -1,0 +1,6 @@
+node_modules
+AWS_INVOKE
+payload.json
+response.json
+*.bak
+.serverless
