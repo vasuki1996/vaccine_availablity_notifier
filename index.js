@@ -39,13 +39,15 @@ const getDataFromCowin = async () => {
             const center = centers[index];
             for (let j = 0; j < center.sessions.length; j++) {
                 const session = center.sessions[j];
-                if(session.min_age_limit === 18 && session.available_capacity > 0){
+                if(session.min_age_limit === 18 && session.available_capacity > 0 && session.available_capacity_dose1 > 0){
                     await postToSlack("@channel \n ```"+JSON.stringify(center, null, 2)+"```");
                 } else {
                     if(session.min_age_limit === 18){
                         Unavailable_Array.push({
                             center_name: center.name,
-                            center_pincode: center.pincode
+                            center_pincode: center.pincode,
+                            session_first_dose: session.available_capacity_dose1,
+                            session_second_dose: session.available_capacity_dose2
                         });
                     }
                 }
@@ -79,6 +81,12 @@ const postToSlack = (data) => {
 }
 
 // TESTING CODE
+// const secrets = require('./secrets.json');
+// const keys = Object.keys(secrets);
+// for (let index = 0; index < keys.length; index++) {
+//     const key = keys[index];
+//     process.env[`${key}`] = secrets[`${key}`]
+// }
 // getDataFromCowin().then(boolean => {
 //     console.log(boolean);
 // }).catch(error => {
