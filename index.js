@@ -22,7 +22,7 @@ const getDataFromCowin = async () => {
         headers: {
             origin: "https://www.cowin.gov.in",
             referer: "https://www.cowin.gov.in/",
-            "User-Agent": "PostmanRuntime/7.26.10",
+            "User-Agent": "PostmanRuntime/7.26.11",
             "sec-ch-ua-mobile": "?0",
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
